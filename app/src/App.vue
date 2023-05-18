@@ -1,8 +1,8 @@
 <template>
     <h1>Your account in FLSN</h1>
     <small>15+<br/>24-</small>
-    <p>Your current name is {{ select_name }}</p>
-    <p>Your current age is {{ select_age }}</p>
+    <p>Your current name is {{ $store.state.name }}</p>
+    <p>Your current age is {{ $store.state.age }}</p>
     <button
             @click="isOpenEditAccount = !isOpenEditAccount"
     >
@@ -14,29 +14,29 @@
             <div class="button-store-content">
                 <button
                         v-for="name in names"
-                        :class="{'selected_button': name == select_name}"
+                        :class="{'selected_button': name == $store.state.name}"
                         :key="name"
-                        @click="changeName(name)"
+                        @click="$store.commit('changeName', name)"
                 >
                     {{ name }}
                 </button>
             </div>
         </div>
-        <input v-model="select_name" type="text" maxlength="64">
+        <input :value="$store.state.name" @input="changeNameByEvent" type="text" maxlength="64">
         <h3>Age</h3>
         <div class="button-store">
             <div class="button-store-content">
                 <button
                         v-for="age in ages"
-                        :class="{'selected_button': age==select_age}"
+                        :class="{'selected_button': age==$store.state.age}"
                         :key="age"
-                        @click="changeAge(age)"
+                        @click="$store.commit('changeAge', age)"
                 >
                     {{ age }}
                 </button>
             </div>
         </div>
-        <input id="age_input" min=15 max="24" maxlength="64"/>
+        <input :value="$store.state.age" id="age_input" min=15 max="24" maxlength="64"/>
         <button @click="changeAgeByEvent">Set age</button>
     </div>
 </template>
@@ -49,12 +49,10 @@ export default defineComponent({
     select_name: 'App',
     data() {
         let ages: Array<number | string> = [...Array(10).keys()].map(i => i + 15)
-        ages.push('Old')
-        ages.push('Young')
+        ages.push('old')
+        ages.push('young')
         return {
             isOpenEditAccount: false,
-            select_name: "Link",
-            select_age: 17 as number | string,
             names: [
                 "John",
                 "Lawrence",
@@ -65,29 +63,13 @@ export default defineComponent({
         }
     },
     methods: {
-        changeName(name: string) {
-            this.select_name = name
+        changeNameByEvent(event: Event){
+            let obj = event.target as HTMLInputElement
+            this.$store.commit('changeName', obj.value)
         },
-        changeAge(age: string | number) {
-            if (typeof age == "string" && !isNaN(Number(age))) {
-                age = Number(age)
-            }
-            if (typeof age == "number") {
-                if (age < 15) age = 15
-                if (age > 24) age = 24
-            }
-            this.select_age = age
-            return age
-        },
-        changeAgeByEvent(){
+        changeAgeByEvent() {
             let inputElement = document.getElementById('age_input') as HTMLInputElement
-            this.changeAge(inputElement.value)
-        }
-    },
-    watch: {
-        select_age(){
-            let inputElement = document.getElementById('age_input') as HTMLInputElement
-            inputElement.value = this.select_age.toString()
+            this.$store.commit('changeAge', inputElement.value.toLowerCase())
         }
     }
 })
@@ -125,6 +107,7 @@ button {
   border: 2px solid #2c3e50;
   padding: 3px;
 }
+
 input {
   border: 2px solid #aaa;
   padding: 3px;
