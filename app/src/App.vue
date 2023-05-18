@@ -63,7 +63,7 @@ export default defineComponent({
         }
     },
     methods: {
-        changeNameByEvent(event: Event){
+        changeNameByEvent(event: Event) {
             let obj = event.target as HTMLInputElement
             this.$store.commit('changeName', obj.value)
         },

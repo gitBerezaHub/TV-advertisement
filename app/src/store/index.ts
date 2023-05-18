@@ -1,21 +1,20 @@
-import { InjectionKey } from 'vue'
+import {InjectionKey} from 'vue'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import { createStore, Store } from 'vuex'
-// define your typings for the store state
+import {createStore, Store} from 'vuex'
+
 export interface State {
     name: string,
     age: number | string
 }
 
-// define injection key
 export const key: InjectionKey<Store<State>> = Symbol()
 
-export const store =  createStore<State>({
+export const store = createStore<State>({
     state: {
         name: "Lawrence",
-        age: 17 as number | string,
-    } ,
+        age: 17,
+    },
     getters: {},
     mutations: {
         changeName(state: State, name: string) {
