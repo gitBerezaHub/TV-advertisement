@@ -29,7 +29,8 @@
             <div class="button-store-content">
                 <button
                         v-for="age in ages"
-                        :class="{'selected_button': age==$store.state.age}"
+                        :class="{'selected_button': age==$store.state.age &&
+                        this.inputAge.toString() === this.$store.state.age.toString()}"
                         :key="age"
                         @click="changeAge(age)"
                 >
