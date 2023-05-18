@@ -30,14 +30,24 @@
                         v-for="age in ages"
                         :class="{'selected_button': age==$store.state.age}"
                         :key="age"
-                        @click="$store.commit('changeAge', age)"
+                        @click="changeAge(age)"
                 >
                     {{ age }}
                 </button>
             </div>
         </div>
-        <input :value="$store.state.age" id="age_input" min=15 max="24" maxlength="64"/>
-        <button @click="changeAgeByEvent">Set age</button>
+        <input
+                min=15 max="24" maxlength="64"
+                id="age_input"
+                v-model="inputAge"
+                :class="{'changed_input': inputAge.toString()!==$store.state.age.toString()}"
+        />
+        <button
+                @click="changeAgeByEvent"
+                :class="{'changed_button': inputAge.toString()!==$store.state.age.toString()}"
+        >
+            Set age
+        </button>
     </div>
 </template>
 
@@ -53,6 +63,7 @@ export default defineComponent({
         ages.push('young')
         return {
             isOpenEditAccount: false,
+            inputAge: this.$store.state.age.toString() as string,
             names: [
                 "John",
                 "Lawrence",
@@ -67,9 +78,13 @@ export default defineComponent({
             let obj = event.target as HTMLInputElement
             this.$store.commit('changeName', obj.value)
         },
+        changeAge(value: string | number){
+            this.$store.commit('changeAge', value)
+            this.inputAge = this.$store.state.age
+        },
         changeAgeByEvent() {
             let inputElement = document.getElementById('age_input') as HTMLInputElement
-            this.$store.commit('changeAge', inputElement.value.toLowerCase())
+            this.changeAge(inputElement.value.toLowerCase())
         }
     }
 })
@@ -108,9 +123,18 @@ button {
   padding: 3px;
 }
 
+.changed_button {
+  border: 2px solid #0F0;
+  padding: 3px;
+}
+
 input {
   border: 2px solid #aaa;
   padding: 3px;
+}
+
+.changed_input {
+  border: 2px solid #0F0;
 }
 
 nav {

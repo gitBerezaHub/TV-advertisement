@@ -29,7 +29,8 @@ export const store = createStore<State>({
                 if (age > 24) age = 24
             }
             state.age = age
-            return age
+            const inputElement = document.getElementById('age_input') as HTMLInputElement
+            inputElement.value = age.toString()
         },
     },
     actions: {},
