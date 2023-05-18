@@ -1,6 +1,6 @@
 <template>
     <h1>Your account in FLSN</h1>
-    <small>15+<br/>24-</small>
+    <small>15+<br/>24−</small>
     <p>Your current name is {{ $store.state.name }}</p>
     <p>Your current age is {{ $store.state.age }}</p>
     <p>Your current hobbies will be here later</p>
@@ -37,17 +37,36 @@
                 </button>
             </div>
         </div>
-        <input
-                min=15 max="24" maxlength="64"
-                id="age_input"
-                v-model="inputAge"
-        />
-        <button
-                @click="changeAgeByEvent"
-                :class="{'changed_button': inputAge.toString()!==$store.state.age.toString()}"
-        >
-            Save age
-        </button>
+        <div class="age_box">
+            <div class="age_box_content">
+                <input
+                        class="age_input"
+                        min=15 max="24" maxlength="64"
+                        id="age_input"
+                        v-model="inputAge"
+                />
+                <button
+                        @click="changeAgeByEvent"
+                        :class="{'changed_button': inputAge.toString()!==$store.state.age.toString()}"
+                        v-if="!inputAgeMessage()"
+                >
+                    Save age
+                </button>
+            </div>
+            <small
+                    class="age_message"
+                    v-if="inputAge.toString()!==$store.state.age.toString() && !inputAgeMessage()"
+            >
+                Don't forget save
+            </small>
+            <small
+                    class="age_message"
+                    v-if="inputAgeMessage()"
+            >
+                {{ inputAgeMessage() }}
+            </small>
+
+        </div>
     </div>
 </template>
 
@@ -78,13 +97,19 @@ export default defineComponent({
             let obj = event.target as HTMLInputElement
             this.$store.commit('changeName', obj.value)
         },
-        changeAge(value: string | number){
+        changeAge(value: string | number) {
             this.$store.commit('changeAge', value)
             this.inputAge = this.$store.state.age
         },
         changeAgeByEvent() {
             let inputElement = document.getElementById('age_input') as HTMLInputElement
             this.changeAge(inputElement.value.toLowerCase())
+        },
+        inputAgeMessage(){
+            let age = Number(this.inputAge)
+            if (age < 15) return "Close site, you are so young"
+            if (age > 24) return "Close site, you are so old"
+            return ""
         }
     }
 })
@@ -115,7 +140,7 @@ button {
   text-align: center;
   border: none;
   padding: 5px;
-  margin: 5px;
+  margin: 6px 3px;
 }
 
 .selected_button {
@@ -131,6 +156,27 @@ button {
 input {
   border: 2px solid #aaa;
   padding: 3px;
+}
+
+.age_box_content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.age_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  input {
+    margin: 6px 3px;
+  }
+  small {
+    align-self: center;
+  }
 }
 
 nav {
