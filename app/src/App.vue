@@ -171,12 +171,18 @@ input {
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 100px;
   input {
     margin: 6px 3px;
   }
   small {
     align-self: center;
+  }
+  button {
+    color: #aaaaaa;
+  }
+  button.changed_button {
+    color: #000;
   }
 }
 
