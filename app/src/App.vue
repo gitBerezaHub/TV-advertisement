@@ -3,6 +3,7 @@
     <small>15+<br/>24-</small>
     <p>Your current name is {{ $store.state.name }}</p>
     <p>Your current age is {{ $store.state.age }}</p>
+    <p>Your current hobbies will be here later</p>
     <button
             @click="isOpenEditAccount = !isOpenEditAccount"
     >
