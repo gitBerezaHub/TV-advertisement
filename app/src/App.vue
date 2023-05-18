@@ -48,7 +48,7 @@
                 />
                 <button
                         @click="changeAgeByEvent"
-                        :class="{'changed_button': inputAge.toString()!==$store.state.age.toString()}"
+                        :disabled="inputAge.toString()===$store.state.age.toString()"
                         v-if="!inputAgeMessage()"
                 >
                     Save age
@@ -149,11 +149,6 @@ button {
   padding: 3px;
 }
 
-.changed_button {
-  border: 2px solid #0F0;
-  padding: 3px;
-}
-
 input {
   border: 2px solid #aaa;
   padding: 3px;
@@ -178,11 +173,9 @@ input {
   small {
     align-self: center;
   }
-  button {
-    color: #aaaaaa;
-  }
-  button.changed_button {
-    color: #000;
+  button:enabled {
+    padding: 3px;
+    border: 2px solid #0F0;
   }
 }
 
