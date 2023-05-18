@@ -40,13 +40,12 @@
                 min=15 max="24" maxlength="64"
                 id="age_input"
                 v-model="inputAge"
-                :class="{'changed_input': inputAge.toString()!==$store.state.age.toString()}"
         />
         <button
                 @click="changeAgeByEvent"
                 :class="{'changed_button': inputAge.toString()!==$store.state.age.toString()}"
         >
-            Set age
+            Save age
         </button>
     </div>
 </template>
@@ -63,7 +62,7 @@ export default defineComponent({
         ages.push('young')
         return {
             isOpenEditAccount: false,
-            inputAge: this.$store.state.age.toString() as string,
+            inputAge: this.$store.state.age.toString(),
             names: [
                 "John",
                 "Lawrence",
@@ -131,10 +130,6 @@ button {
 input {
   border: 2px solid #aaa;
   padding: 3px;
-}
-
-.changed_input {
-  border: 2px solid #0F0;
 }
 
 nav {
