@@ -106,9 +106,9 @@ export default defineComponent({
             let inputElement = document.getElementById('age_input') as HTMLInputElement
             this.changeAge(inputElement.value.toLowerCase())
         },
-        inputAgeMessage(){
+        inputAgeMessage() {
             let age = Number(this.inputAge)
-            if (age < 15) return "Close site, you are so young"
+            if (age < 15) return "Give me your parents number. I'll say, you're a bad boy"
             if (age > 24) return "Close site, you are so old"
             return ""
         }
@@ -167,12 +167,15 @@ input {
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 100px;
+
   input {
     margin: 6px 3px;
   }
+
   small {
     align-self: center;
   }
+
   button:enabled {
     padding: 3px;
     border: 2px solid #0F0;
