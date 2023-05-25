@@ -1,9 +1,9 @@
 <template>
     <h1>Your account in FLSN</h1>
     <small>15+<br/>24−</small>
-    <p>Your current name is {{ $store.state.name }}</p>
-    <p>Your current age is {{ $store.state.age }}</p>
-    <p>Your current hobbies will be here later</p>
+    <p>Your name is {{ $store.state.name }}</p>
+    <p>Your age is {{ $store.state.age }}</p>
+    <p>Your hobbies will be here later</p>
     <button
             @click="isOpenEditAccount = !isOpenEditAccount"
     >
@@ -51,11 +51,10 @@
                         :disabled="inputAge.toString()===$store.state.age.toString()"
                         v-if="!inputAgeMessage()"
                 >
-                    Save age
+                    {{ inputAge.toString()===$store.state.age.toString() ? 'Saved' : 'Save'}}
                 </button>
             </div>
             <small
-                    class="age_message"
                     v-if="inputAge.toString()!==$store.state.age.toString() && !inputAgeMessage()"
             >
                 Don't forget save
@@ -174,6 +173,7 @@ input {
 
   small {
     align-self: center;
+    text-align: center;
   }
 
   button:enabled {
