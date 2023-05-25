@@ -11,28 +11,9 @@ export interface State {
 export const key: InjectionKey<Store<State>> = Symbol()
 
 export const store = createStore<State>({
-    state: {
-        name: "Lawrence",
-        age: 17,
-    },
+    state: {},
     getters: {},
-    mutations: {
-        changeName(state: State, name: string) {
-            state.name = name
-        },
-        changeAge(state: State, age: string | number) {
-            if (typeof age == "string" && !isNaN(Number(age))) {
-                age = Number(age)
-            }
-            if (typeof age == "number") {
-                if (age < 15) age = 15
-                if (age > 24) age = 24
-            }
-            state.age = age
-            const inputElement = document.getElementById('age_input') as HTMLInputElement
-            inputElement.value = age.toString()
-        },
-    },
+    mutations: {},
     actions: {},
     modules: {}
 })
