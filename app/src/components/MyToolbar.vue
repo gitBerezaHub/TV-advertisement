@@ -4,7 +4,7 @@
     <li>
       <svg
           width="42"
-          height="40"
+          height="42"
           xmlns="http://www.w3.org/2000/svg">
         <circle cx="3" cy="3" r="3" fill="black" />
         <rect x="12" y="1" height="4" width="30" rx="2"/>
@@ -16,11 +16,11 @@
     </li>
     <li>
       <svg
-          width="40"
-          height="40"
+          width="42"
+          height="42"
           xmlns="http://www.w3.org/2000/svg">
         <circle cx="26" cy="14" r="13" fill="black" />
-        <circle cx="26" cy="14" r="9" stroke="black" stroke-width=".1" fill="white"/>
+        <circle cx="26" cy="14" r="9" stroke="black" stroke-width=".1" fill="#fff5ef"/>
         <rect x="" y="36" height="4" width="25" rx="2" transform="rotate(135 13 33)"/>
       </svg>
     </li>
@@ -46,16 +46,15 @@ ul{
   list-style-type: none;
   padding: 0;
   display: inline-flex;
-  background-color: rgb(255, 255, 255, .5);
+  background-color: #fff5ef;
   border-top: 3px solid rgb(136, 136, 136, .7);
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  left: 0;
-  right: 0;
-  height: 10%;
+  width: 100%;
+  margin: 0;
 }
 li{
   margin: auto;
-  font-size: 40px;
+  padding: 10px;
 }
 </style>

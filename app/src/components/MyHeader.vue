@@ -10,13 +10,11 @@
 
 <style scoped lang="scss">
 div {
-  background-color: rgb(255, 255, 255, .5);
+  background-color: #fff5ef;
   border-bottom: 3px solid rgb(136, 136, 136, .7);
-  height: 10%;
-  position: absolute;
+  position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
 }
 
 h3 {
@@ -26,6 +24,7 @@ h3 {
   font-weight: lighter;
   text-align: center;
   margin: auto;
+  padding: 5px;
 }
 
 </style>

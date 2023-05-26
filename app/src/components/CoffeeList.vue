@@ -2,6 +2,8 @@
   <div>
     <CoffeeItem></CoffeeItem>
     <CoffeeItem></CoffeeItem>
+    <CoffeeItem></CoffeeItem>
+    <CoffeeItem></CoffeeItem>
   </div>
 </template>
 
