@@ -1,4 +1,4 @@
-# tv_ad
+# typescript_lesson
 
 ## Project setup
 ```

@@ -1,23 +1,25 @@
 <template>
   <div>
     <MyHeader></MyHeader>
-    <LastModel></LastModel>
-    <hr>
-    <OtherTV></OtherTV>
+    <CoffeeList></CoffeeList>
+    <MyToolbar></MyToolbar>
   </div>
 </template>
 
 <script lang="ts">
 
 import {defineComponent} from "vue";
-import MyHeader from "@/components/UI/MyHeader.vue";
-import LastModel from "@/components/LastModel.vue";
-import OtherTV from "@/components/OtherTV.vue";
+import MyHeader from "@/components/MyHeader.vue";
+import MyToolbar from "@/components/MyToolbar.vue";
+import CoffeeList from "@/components/CoffeeList.vue";
 
 export default defineComponent({
-  components: {OtherTV, LastModel, MyHeader}
+  components: {CoffeeList, MyToolbar, MyHeader}
 })
 </script>
 
 <style lang="scss">
+body {
+  background-color: #FFEFDF;
+}
 </style>
