@@ -2,8 +2,9 @@
   <div>
     <MyHeader></MyHeader>
     <LastModel></LastModel>
-    <hr>
     <OtherTV></OtherTV>
+    <AboutUs></AboutUs>
+    <InfoFooter></InfoFooter>
   </div>
 </template>
 
@@ -13,9 +14,11 @@ import {defineComponent} from "vue";
 import MyHeader from "@/components/UI/MyHeader.vue";
 import LastModel from "@/components/LastModel.vue";
 import OtherTV from "@/components/OtherTV.vue";
+import AboutUs from "@/components/AboutUs.vue";
+import InfoFooter from "@/components/InfoFooter.vue";
 
 export default defineComponent({
-  components: {OtherTV, LastModel, MyHeader}
+  components: {InfoFooter, OtherTV, AboutUs, LastModel, MyHeader}
 })
 </script>
 
